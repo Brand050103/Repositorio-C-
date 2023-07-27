@@ -202,13 +202,40 @@ void registrarProducto(){
 }
 
 void modificarProducto(){
-
+    system("cls");
+    char opc; 
+    int opc_Modificar; 
+    cout<<"Elija el Producto que queira modificar: "<<endl<<endl; 
+    for(int i=0; i<contadorProducto; i++){
+        cout<<"["<<i+1<<"] "<<_Producto[i].nombre_producto<<endl; 
+    }
+    cout<<"ELIJA: "; cin>>opc_Modificar; 
+    for(int j=0; j<contadorProducto; j++){
+        if((opc_Modificar-1)==j){
+            cout<<"DIGITE LOS NUEVOS DATOS: "<<endl<<endl; 
+            cout<<"Digite el codigo del Producto "<<j+1<<" (XXX): "; cin>>_Producto[j].codigo_producto; 
+            cout<<"Digite el nombre del Producto "<<j+1<<" : "; cin>>_Producto[j].nombre_producto; 
+            cout<<"Digite la categoria del Producto "<<j+1<<": "; cin>>_Producto[j].categoria_producto; 
+            cout<<"Digite el precio unitario del Producto "<<j+1<<": "; cin>>_Producto[j].precio_unitario; 
+            cout<<"Digite la cantidad de "<<_Producto[j+1].nombre_producto<<" que va a registrar: "; cin>>_Producto[j].cantidad_producto; 
+            cout<<"\nLOS DATOS DEL PRODUCTO SE MODIFICARON SATISFACTORIAMENTE..."<<endl;
+        }
+    }
+    cout<<"Desea modificar otro producto?(S/N): "; cin>>opc; 
+    if (opc=='s'||opc=='S'){
+        modificarProducto(); 
+    }
+    else{
+        cout<<"VOLVIENDO AL MENU PRODUCTOS..."<<endl;
+        Sleep(1500); 
+        abrirProductos(); 
+    }
 }
 
 void verProducto(){
-    cout<<"Hay "<<contadorProducto<<" Prodcutos registrados..."<<endl; 
+    cout<<"Hay "<<contadorProducto<<" Prodcutos registrados..."<<endl<<endl; 
     for(int i=0; i<contadorProducto; i++){
-        cout<<"PRODUCTO: ["<<i<<"]"<<endl; 
+        cout<<"PRODUCTO: ["<<i+1<<"]"<<endl; 
         cout<<"NOMBRE: "<<_Producto[i].nombre_producto<<endl; 
         cout<<"CODIGO: "<<_Producto[i].codigo_producto<<endl; 
         cout<<"CANTIDAD: "<<_Producto[i].cantidad_producto<<endl; 
