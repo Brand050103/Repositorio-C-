@@ -2,6 +2,8 @@
 #include<windows.h>
 #define MAX 50
 using namespace std; 
+//VARIABLES GLOBALES
+int contadorProducto = 0; 
 
 //DECLARACION DE FUNCIONES DE EJECUCIÓN DE LOS MENUS PRINCIPALES
 // MENU, PRODUCTOS, CLIENTES, PROVEEDORES Y FACTURA 
@@ -160,29 +162,62 @@ void abrirProductos(){
 //FUNCION REGISTRAR PRODUCTO
 void registrarProducto(){
     system("cls"); 
-    char opc = 'S'; 
-    int i=0; 
-    do{
-        cout<<"Digite el codigo del Producto "<<i+1<<" (XXX): "; cin>>_Producto[i].codigo_producto; 
-        cout<<"Digite el nombre del Producto "<<i+1<<" : "; cin>>_Producto[i].nombre_producto; 
-        cout<<"Digite la categoria del Producto "<<i+1<<": "; cin>>_Producto[i].categoria_producto; 
-        
-    }while((opc == 'S')||(opc == 's'));
-    /*
-    cout<<"Digite la cantidad de PRODUCTOS a registrar: "; cin>>max_productos; 
-    Producto producto[max_productos]; 
-    for(int i=0; i<max_productos; i++){
-        cout<<"Digite el codigo del Producto "<<i+1<<" (XXX): "; cin>>producto[i].codigo_producto;
-        cout<<"Digite el nombre del Producto "<<i+1<<" : "; cin>>producto[i].nombre_producto; 
-        cout<<"Digite la categoria del Producto "<<i+1<<": "; cin>>producto[i].categoria_producto; 
-        cout<<"Digite el precio unitario del Producto "<<i+1<<": "; cin>>producto[i].precio_unitario; 
-        cout<<"Digite la cantidad de "<<producto[i].nombre_producto<<" que va a registrar: "; cin>>producto[i].cantidad_producto;
-        cout<<"SUS DATOS DEL PRODUCTO "<<i+1<< "HAN SIDO REGISTRADOS CORRECTAMENTE..."<<endl<<endl; 
+    char opc_1='s'; 
+    int opc_2; 
+    while((opc_1 == 'S')||(opc_1 == 's')){
+        cout<<"Digite el codigo del Producto "<<contadorProducto+1<<" (XXX): "; cin>>_Producto[contadorProducto].codigo_producto; 
+        cout<<"Digite el nombre del Producto "<<contadorProducto+1<<" : "; cin>>_Producto[contadorProducto].nombre_producto; 
+        cout<<"Digite la categoria del Producto "<<contadorProducto+1<<": "; cin>>_Producto[contadorProducto].categoria_producto; 
+        cout<<"Digite el precio unitario del Producto "<<contadorProducto+1<<": "; cin>>_Producto[contadorProducto].precio_unitario; 
+        cout<<"Digite la cantidad de "<<_Producto[contadorProducto+1].nombre_producto<<" que va a registrar: "; cin>>_Producto[contadorProducto].cantidad_producto; 
+        cout<<"\nLos datos del Producto se registraron satisfacoriamente"<<endl; 
+        contadorProducto++; 
+        cout<<"Desea registar otro Producto? (S/N): "; cin>>opc_1;
+    } 
+    cout<<"[1] Volver al Menu Principal"<<endl;
+    cout<<"[2] Volver al Menu Productos"<<endl;
+    cout<<"[3] SALIR"<<endl<<endl; 
+    cout<<"Digite una de las opciones: "; cin>>opc_2; 
+    switch(opc_2){
+    case 1:
+        cout<<"Volviendo al Menu Principal..."; 
+        Sleep(1500);  
+        abrirMenu(); 
+        break;
+    case 2: 
+        cout<<"Volviendo al Menu Prodcutos..."; 
+        Sleep(1500); 
+        abrirProductos(); 
+        break; 
+    case 3: 
+        break; 
+    default: 
+        cout<<"Ha digitado una opcion erronea.."<<endl; 
+        cout<<"Vovlviendo al Menú Principal..."; 
+        Sleep(1500); 
+        abrirMenu(); 
+        break;  
+    }
+
+}
+
+void modificarProducto(){
+
+}
+
+void verProducto(){
+    cout<<"Hay "<<contadorProducto<<" Prodcutos registrados..."<<endl; 
+    for(int i=0; i<contadorProducto; i++){
+        cout<<"PRODUCTO: ["<<i<<"]"<<endl; 
+        cout<<"NOMBRE: "<<_Producto[i].nombre_producto<<endl; 
+        cout<<"CODIGO: "<<_Producto[i].codigo_producto<<endl; 
+        cout<<"CANTIDAD: "<<_Producto[i].cantidad_producto<<endl; 
+        cout<<"PRECIO: "<<_Producto[i].precio_unitario<<endl<<endl; 
     }
     int opc; 
-    cout<<"1. Volver al Menu Principal"<<endl;
-    cout<<"2. Volver al Menu Productos"<<endl;
-    cout<<"3. SALIR"<<endl<<endl; 
+    cout<<"[1] Volver al Menu Principal"<<endl;
+    cout<<"[2] Volver al Menu Productos"<<endl;
+    cout<<"[3] SALIR"<<endl<<endl; 
     cout<<"Digite una de las opciones: "; cin>>opc; 
     switch(opc){
     case 1:
@@ -203,16 +238,7 @@ void registrarProducto(){
         Sleep(1500); 
         abrirMenu(); 
         break;  
-    }*/
-
-}
-
-void modificarProducto(){
-
-}
-
-void verProducto(){
-
+    }
 }
 
 //FUNCION ABRIR EL MENU DE CLIENTES
